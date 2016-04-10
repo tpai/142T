@@ -13,13 +13,14 @@ body {
     background-size: cover;
 }
 .console {
-    width: 25%;
+    width: 30%;
     margin-top: 50px;
     padding: 15px;
     color: #DDDDDD;
     background-color: rgba(0, 0, 0, .8);
 }
 div h1 {
+    font-size: 2vw;
     z-index: 100;
 }
 #illustrator {
@@ -48,15 +49,15 @@ div h1 {
 </head>
 <body style="background-color: rgb(18, 27, 34);">
     <div class='console'>
-        <h1 class='title'>> SMS_123T.js</h1>
+        <h1 class='title'>> SMS_123T.js<span id='first' class='dash'>_</span></h1>
         <h1 class='hide'>入伍日：<span id='begin'></span></h1>
         <h1 class='hide'>退伍日：<span id='end'></span></h1>
         <h1 class='hide'>距今：</h1>
-        <h1 class='title-year'><span class='year'></span></h1>
-        <h1 class='title-month'><span class='month'></span></h1>
-        <h1 class='title-day'><span class='day'></span></h1>
-        <h1 class='title-seconds'><span class='seconds'></span></h1>
-        <h1 id='next' class='title hide'>> <span class='dash'>_</span></h1>
+        <h1 class='title-year hide'><span class='year'></span></h1>
+        <h1 class='title-month hide'><span class='month'></span></h1>
+        <h1 class='title-day hide'><span class='day'></span></h1>
+        <h1 class='title-seconds hide'><span class='seconds'></span></h1>
+        <h1 class='title hide'>> <span class='dash'>_</span></h1>
     </div>
 <script>
 Date.prototype.yyyymmdd = function() {
@@ -87,7 +88,6 @@ var FreeDay = new Date("Jun 30, 2014"),
                     $month.textContent = ' ' + Math.round(diffSec/(60*60*24*30)) + ' 個月';
                     $day.textContent = ' ' + Math.round(diffSec/(60*60*24)) + ' 天';
                     $seconds.textContent = diffSec + ' 秒';
-                    $(".hide").removeClass("hide");
             }
         },
         loop: function() {
@@ -99,6 +99,24 @@ var FreeDay = new Date("Jun 30, 2014"),
         }
     };
     time.loop();
+
+
+    var list = $(".hide");
+    var display = function() {
+        new Promise(function(resolve, reject) {
+            if(list.length <= 0)resolve(false);
+            setTimeout(function() {
+                var $ele = $(list.shift());
+                $ele.removeClass("hide");
+                resolve(true)
+            }, 250);
+        })
+        .then(function(data) { data && display() });
+    };
+    setTimeout(function() {
+        $("#first").remove();
+        display();
+    }, 1000);
 
 var $dashEl = $('.dash'),
     dash = {
@@ -114,7 +132,21 @@ var $dashEl = $('.dash'),
             clearInterval(this.looping);
         }
     };
-dash.loop();
+    dash.loop();
+
+(function( $ ) {
+    $.fn.pop = function() {
+        var top = this.get(-1);
+        this.splice(this.length-1,1);
+        return top;
+    };
+
+    $.fn.shift = function() {
+        var bottom = this.get(0);
+        this.splice(0,1);
+        return bottom;
+    };
+})( jQuery );
 </script>
 
 </body>
