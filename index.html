@@ -6,23 +6,23 @@
 <title>0w0</title>
 <style>
 body {
-    background: url('xNiJAQI.jpg') no-repeat center center fixed;
-  	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
- 	background-size: cover;
+    background: url('theSwords.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .title {
     z-index: 100;
-    color: white;
+    color: black;
 }
 .title-timer {
     z-index: 100;
-	color: white;
+    color: black;
     font-size: 100px;
 }
 .title-seconds {
-    color: white;
+    color: black;
 }
 #illustrator {
     color: white;
@@ -49,13 +49,13 @@ body {
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body style="background-color: rgb(18, 27, 34);">
-<div><h1 class='title'>> SMS_142T.js<span class='dash'>_</span></h1></div>
-<div><h1 class='title-timer text-center'><span class='timer'></span></h1></div>
-<div><h1 class='title-seconds text-center'><span class='seconds'>10101010</span></h1></div>
-<div id="illustrator" class='backboard'>Illustration by <a href='https://twitter.com/ba_e_c'>@Ba_e_c</a></div>
+<div><h1 class='title'>> SMS_123T.js<span class='dash'>_</span></h1></div>
+<div style="margin-left: 450px"><h1 class='title-timer text-center'><span class='timer'></span></h1></div>
+<div style="margin-left: 450px"><h1 class='title-seconds text-center'><span class='seconds'>10101010</span></h1></div>
+<div id="illustrator" class='backboard'>Illustration from a game called <a href='https://itunes.apple.com/tw/app/shuo-jian/id924826403'>The Swords</a></div>
 <script>
-var FreeDay = +new Date("Oct 14, 2015"),
-    ZeroDay = +new Date("Oct 30, 2014"),
+var FreeDay = +new Date("Aug 1, 2015"),
+    ZeroDay = +new Date("Jul 31, 2014"),
     $timer = document.querySelector('.timer'),
     $seconds = document.querySelector('.seconds');
     time = {
@@ -67,7 +67,7 @@ var FreeDay = +new Date("Oct 14, 2015"),
                     final = (FreeDay / 1000) - passSec;
                     // console.log(diffSec);
                     $timer.textContent = ' ' + Math.round(diffSec/(60*60*24)) + ' 天';
-                    $seconds.textContent = diffSec;
+                    $seconds.textContent = diffSec + ' 秒';
             }
         },
         loop: function() {
@@ -78,7 +78,7 @@ var FreeDay = +new Date("Oct 14, 2015"),
             clearInterval(this.looping);
         }
     };
-	time.loop();
+    time.loop();
 
 var $dashEl = $('.dash'),
     dash = {
